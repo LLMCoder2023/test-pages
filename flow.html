@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pages Demo — Flowcharts</title>
+  <meta name="description" content="Animated, interactive SVG flowcharts you can play, step through and inspect.">
+  <meta name="theme-color" content="#0b0f17">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%236ea8fe'/%3E%3Cpath d='M9 16h6l3-6 3 12 2-6h0' stroke='%230b0f17' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <button class="btn btn-ghost icon-btn" data-flyout-target="nav-panel" aria-controls="nav-panel" aria-label="Open navigation">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+    <a class="brand" href="./"><span class="brand-mark" aria-hidden="true"></span>Pages Demo</a>
+    <nav class="top-nav" aria-label="Primary">
+      <a href="./">Home</a>
+      <a href="flow.html" aria-current="page">Flowcharts</a>
+    </nav>
+    <div class="header-actions">
+      <button class="btn btn-ghost icon-btn" data-flyout-target="help-panel" aria-controls="help-panel" aria-label="Keyboard shortcuts">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 1-1 1.7M12 17h.01"/></svg>
+      </button>
+      <button class="btn btn-ghost icon-btn" data-flyout-target="settings-panel" aria-controls="settings-panel" aria-label="Open settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="container flow-layout">
+    <div class="section-head">
+      <div>
+        <h1 style="font-size:28px">Animated flowcharts</h1>
+        <p>Press play to send a packet through the graph. Decision nodes branch at random. Click any node to inspect it.</p>
+      </div>
+    </div>
+
+    <div class="flow-toolbar" role="toolbar" aria-label="Flowchart controls">
+      <div class="tabs" role="tablist" aria-label="Choose a flowchart" id="flowTabs"></div>
+      <span class="sep" aria-hidden="true"></span>
+      <button class="btn btn-primary" id="playBtn" aria-keyshortcuts="Space">▶ Play</button>
+      <button class="btn" id="stepBtn" aria-keyshortcuts="n">Step</button>
+      <button class="btn" id="resetBtn" aria-keyshortcuts="r">Reset</button>
+      <label class="speed">Speed <input type="range" id="speed" min="0.25" max="3" step="0.25" value="1"><output id="speedOut">1×</output></label>
+      <span class="grow"></span>
+      <button class="btn" data-flyout-target="log-panel" aria-controls="log-panel" aria-keyshortcuts="l">Run log</button>
+    </div>
+
+    <div class="flow-stage" id="stage">
+      <svg id="flowSvg" role="group" aria-label="Flowchart"></svg>
+      <div class="flow-status" id="status"><span class="dot"></span><span id="statusText">Ready</span></div>
+    </div>
+
+    <div class="legend" aria-label="Legend">
+      <span><i style="border-color:var(--accent)"></i>Start / end</span>
+      <span><i style="border-color:var(--border-strong)"></i>Process</span>
+      <span><i style="border-color:var(--warn);transform:rotate(45deg) scale(.8)"></i>Decision</span>
+      <span><i style="border-color:var(--ok)"></i>Success</span>
+      <span><i style="border-color:var(--bad)"></i>Failure</span>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>SVG flowcharts generated from plain JS data · see <code>assets/js/flow.js</code></span>
+      <span><kbd>Space</kbd> play · <kbd>n</kbd> step · <kbd>r</kbd> reset</span>
+    </div>
+  </footer>
+
+  <!-- ===================== Flyouts ===================== -->
+
+  <!-- Node inspector: non-modal so the animation stays visible -->
+  <aside class="flyout" id="node-panel" data-side="right" data-modal="false" aria-labelledby="node-title">
+    <div class="flyout-header">
+      <h2 id="node-title">Node</h2>
+      <button class="btn btn-ghost icon-btn" data-flyout-close aria-label="Close">✕</button>
+    </div>
+    <div class="flyout-body" id="nodeBody"></div>
+    <div class="flyout-footer">
+      <button class="btn" id="runFromHere">Run from here</button>
+    </div>
+  </aside>
+
+  <aside class="flyout" id="log-panel" data-side="left" data-modal="false" aria-labelledby="log-title">
+    <div class="flyout-header">
+      <h2 id="log-title">Run log</h2>
+      <button class="btn btn-ghost" id="clearLog">Clear</button>
+      <button class="btn btn-ghost icon-btn" data-flyout-close aria-label="Close" style="margin-left:0">✕</button>
+    </div>
+    <div class="flyout-body">
+      <ol class="log" id="log" aria-live="polite"></ol>
+    </div>
+  </aside>
+
+  <aside class="flyout" id="nav-panel" data-side="left" aria-labelledby="nav-title">
+    <div class="flyout-header">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <h2 id="nav-title">Navigate</h2>
+      <button class="btn btn-ghost icon-btn" data-flyout-close aria-label="Close">✕</button>
+    </div>
+    <div class="flyout-body">
+      <ul class="nav-list stagger">
+        <li><a href="./"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</a></li>
+        <li><a href="flow.html#pipeline" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="15" width="6" height="6" rx="1"/><path d="M9 6h4a2 2 0 0 1 2 2v7"/></svg>CI/CD pipeline</a></li>
+        <li><a href="flow.html#request"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Request lifecycle</a></li>
+        <li><a href="#" data-flyout-target="settings-panel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>Settings</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <aside class="flyout" id="settings-panel" data-side="right" aria-labelledby="settings-title">
+    <div class="flyout-header">
+      <h2 id="settings-title">Settings</h2>
+      <button class="btn btn-ghost icon-btn" data-flyout-close aria-label="Close">✕</button>
+    </div>
+    <div class="flyout-body stagger">
+      <div class="field">
+        <span class="label">Accent color</span>
+        <div class="swatches">
+          <button class="swatch" data-color="#6ea8fe" style="background:#6ea8fe" aria-label="Blue"></button>
+          <button class="swatch" data-color="#a78bfa" style="background:#a78bfa" aria-label="Violet"></button>
+          <button class="swatch" data-color="#3ddc97" style="background:#3ddc97" aria-label="Green"></button>
+          <button class="swatch" data-color="#ff8a65" style="background:#ff8a65" aria-label="Orange"></button>
+          <button class="swatch" data-color="#f472b6" style="background:#f472b6" aria-label="Pink"></button>
+        </div>
+      </div>
+      <div class="field">
+        <label class="switch">Reduce motion <input type="checkbox" id="reduceMotion"></label>
+        <div class="hint">Turns off decorative animation. The packet still moves when you press play.</div>
+      </div>
+      <div class="field">
+        <label class="switch">Auto-loop runs <input type="checkbox" id="autoLoop"></label>
+        <div class="hint">Starts a new run when the packet reaches an end node.</div>
+      </div>
+    </div>
+    <div class="flyout-footer">
+      <button class="btn" id="resetSettings">Reset</button>
+      <button class="btn btn-primary" data-flyout-close>Done</button>
+    </div>
+  </aside>
+
+  <aside class="flyout" id="help-panel" data-side="right" aria-labelledby="help-title">
+    <div class="flyout-header">
+      <h2 id="help-title">Keyboard shortcuts</h2>
+      <button class="btn btn-ghost icon-btn" data-flyout-close aria-label="Close">✕</button>
+    </div>
+    <div class="flyout-body">
+      <dl class="kv stagger">
+        <dt><kbd>Space</kbd></dt><dd>Play / pause</dd>
+        <dt><kbd>n</kbd></dt><dd>Step one hop</dd>
+        <dt><kbd>r</kbd></dt><dd>Reset run</dd>
+        <dt><kbd>l</kbd></dt><dd>Toggle run log</dd>
+        <dt><kbd>1</kbd> / <kbd>2</kbd></dt><dd>Switch flowchart</dd>
+        <dt><kbd>?</kbd></dt><dd>Show this panel</dd>
+        <dt><kbd>m</kbd></dt><dd>Toggle navigation</dd>
+        <dt><kbd>Esc</kbd></dt><dd>Close top panel</dd>
+      </dl>
+    </div>
+  </aside>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/shortcuts.js"></script>
+  <script src="assets/js/flow-data.js"></script>
+  <script src="assets/js/flow.js"></script>
+</body>
+</html>

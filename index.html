@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pages Demo — Home</title>
+  <meta name="description" content="Static, dark-themed interactive pages with flyout panels and animated flowcharts, hosted on GitHub Pages.">
+  <meta name="theme-color" content="#0b0f17">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%236ea8fe'/%3E%3Cpath d='M9 16h6l3-6 3 12 2-6h0' stroke='%230b0f17' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <button class="btn btn-ghost icon-btn" data-flyout-target="nav-panel" aria-controls="nav-panel" aria-label="Open navigation">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+    <a class="brand" href="./"><span class="brand-mark" aria-hidden="true"></span>Pages Demo</a>
+    <nav class="top-nav" aria-label="Primary">
+      <a href="./" aria-current="page">Home</a>
+      <a href="flow.html">Flowcharts</a>
+    </nav>
+    <div class="header-actions">
+      <button class="btn btn-ghost icon-btn" data-flyout-target="help-panel" aria-controls="help-panel" aria-label="Keyboard shortcuts">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 1-1 1.7M12 17h.01"/></svg>
+      </button>
+      <button class="btn btn-ghost icon-btn" data-flyout-target="settings-panel" aria-controls="settings-panel" aria-label="Open settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Static · HTML · CSS · JS</span>
+        <h1>Interactive pages,<br><span class="grad">no build step.</span></h1>
+        <p class="lead">A dark-themed starter for GitHub Pages: slide-out panels, animated flowcharts you can step through, and settings saved in your browser. Plain files only.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="flow.html">Open the flowcharts →</a>
+          <button class="btn" data-flyout-target="details-panel" aria-controls="details-panel">Right panel</button>
+          <button class="btn" data-flyout-target="sheet-panel" aria-controls="sheet-panel">Bottom sheet</button>
+        </div>
+      </div>
+
+      <svg class="orbit" viewBox="0 0 400 400" role="img" aria-label="Decorative animated diagram of connected services">
+        <defs>
+          <radialGradient id="coreGrad" cx="40%" cy="35%">
+            <stop offset="0%" stop-color="#fff"/>
+            <stop offset="35%" style="stop-color:var(--accent)"/>
+            <stop offset="100%" stop-color="#1b2a4a"/>
+          </radialGradient>
+        </defs>
+        <circle class="ring" cx="200" cy="200" r="90"/>
+        <circle class="ring" cx="200" cy="200" r="150"/>
+        <g class="spin">
+          <line class="link" x1="200" y1="200" x2="200" y2="50"/>
+          <line class="link" x1="200" y1="200" x2="330" y2="275"/>
+          <line class="link" x1="200" y1="200" x2="70" y2="275"/>
+          <circle class="sat" cx="200" cy="50" r="14"/>
+          <circle class="sat ok" cx="330" cy="275" r="12"/>
+          <circle class="sat warn" cx="70" cy="275" r="10"/>
+        </g>
+        <g class="spin rev">
+          <line class="link" x1="200" y1="200" x2="290" y2="200"/>
+          <line class="link" x1="200" y1="200" x2="137" y2="137"/>
+          <circle class="sat" cx="290" cy="200" r="9"/>
+          <circle class="sat ok" cx="137" cy="137" r="8"/>
+        </g>
+        <circle class="core" cx="200" cy="200" r="38"/>
+      </svg>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>What's included</h2>
+          <p>Each card opens a panel with more detail.</p>
+        </div>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M15 4v16"/></svg></div>
+          <h3>Flyout panels</h3>
+          <p>Left, right and bottom panels with a backdrop, Esc to close, a focus trap, and staggered content.</p>
+          <button class="btn" data-flyout-target="details-panel">Try it</button>
+        </article>
+        <article class="card">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="15" width="6" height="6" rx="1"/><path d="M9 6h4a2 2 0 0 1 2 2v7"/></svg></div>
+          <h3>Animated flowcharts</h3>
+          <p>SVG diagrams built from data. Edges draw in, packets travel each path, and decisions branch at random.</p>
+          <a class="btn" href="flow.html">View</a>
+        </article>
+        <article class="card">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></div>
+          <h3>Saved settings</h3>
+          <p>The accent color and reduced-motion setting are stored in localStorage, so they carry across pages.</p>
+          <button class="btn" data-flyout-target="settings-panel">Customize</button>
+        </article>
+        <article class="card">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H5.2L4 17.2z"/></svg></div>
+          <h3>Zero dependencies</h3>
+          <p>No frameworks, bundlers or CDNs. Push the repo and GitHub Pages serves it as-is.</p>
+          <button class="btn" data-flyout-target="sheet-panel">Deploy steps</button>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>Static site · GitHub Pages</span>
+      <span>Press <kbd>?</kbd> for shortcuts</span>
+    </div>
+  </footer>
+
+  <!-- ===================== Flyouts ===================== -->
+
+  <aside class="flyout" id="nav-panel" data-side="left" aria-labelledby="nav-title">
+    <div class="flyout-header">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <h2 id="nav-title">Navigate</h2>
+      <button class="btn btn-ghost icon-btn" data-flyout-close aria-label="Close">✕</button>
+    </div>
+    <div class="flyout-body">
+      <ul class="nav-list stagger">
+        <li><a href="./" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</a></li>
+        <li><a href="flow.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="15" width="6" height="6" rx="1"/><path d="M9 6h4a2 2 0 0 1 2 2v7"/></svg>Flowcharts</a></li>
+        <li><a href="flow.html#request"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Request lifecycle</a></li>
+        <li><a href="#" data-flyout-target="settings-panel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>Settings</a></li>
+      </ul>
+      <div class="nav-label">About</div>
+      <p style="color:var(--text-dim);font-size:14px;margin:0 12px">The panels are plain HTML <code>&lt;aside&gt;</code> elements. A single script handles opening and closing them.</p>
+    </div>
+  </aside>
+
+  <aside class="flyout" id="details-panel" data-side="right" aria-labelledby="details-title">
+    <div class="flyout-header">
+      <h2 id="details-title">Flyout anatomy</h2>
+      <button class="btn btn-ghost icon-btn" data-flyout-close aria-label="Close">✕</button>
+    </div>
+    <div class="flyout-body stagger">
+      <p style="color:var(--text-dim)">Any element with <code>data-flyout-target="id"</code> opens the panel with that id.</p>
+      <details class="acc" open>
+        <summary>Markup</summary>
+        <div class="acc-body"><code>&lt;aside class="flyout" id="x" data-side="right"&gt;</code><br>Sides: <code>left</code>, <code>right</code>, <code>bottom</code>. Add <code>data-modal="false"</code> to drop the backdrop.</div>
+      </details>
+      <details class="acc">
+        <summary>Keyboard</summary>
+        <div class="acc-body"><kbd>Esc</kbd> closes the top panel. <kbd>Tab</kbd> stays inside modal panels. Focus goes back to the button that opened the panel.</div>
+      </details>
+      <details class="acc">
+        <summary>JavaScript API</summary>
+        <div class="acc-body"><code>Flyout.open(id)</code>, <code>Flyout.close(id)</code>, <code>Flyout.toggle(id)</code>, <code>Flyout.closeAll()</code>. Each panel fires <code>flyout:open</code> and <code>flyout:close</code> events.</div>
+      </details>
+      <details class="acc">
+        <summary>Stacking</summary>
+        <div class="acc-body">Panels on different sides can be open together. Try opening the bottom sheet from here.</div>
+      </details>
+      <button class="btn" data-flyout-target="sheet-panel">Open bottom sheet</button>
+    </div>
+  </aside>
+
+  <aside class="flyout" id="sheet-panel" data-side="bottom" aria-labelledby="sheet-title">
+    <div class="flyout-header">
+      <h2 id="sheet-title">Publish to GitHub Pages</h2>
+      <button class="btn btn-ghost icon-btn" data-flyout-close aria-label="Close">✕</button>
+    </div>
+    <div class="flyout-body">
+      <div class="container" style="padding:0">
+        <ol class="stagger" style="color:var(--text-dim);padding-left:20px;margin:0">
+          <li>Push this repository to GitHub.</li>
+          <li>Open <strong>Settings → Pages</strong>.</li>
+          <li>Under <strong>Build and deployment</strong>, choose <em>Deploy from a branch</em>.</li>
+          <li>Pick branch <code>main</code> and folder <code>/ (root)</code>, then save.</li>
+          <li>After a minute or so the site is live at <code>https://&lt;user&gt;.github.io/&lt;repo&gt;/</code>.</li>
+        </ol>
+      </div>
+    </div>
+  </aside>
+
+  <aside class="flyout" id="settings-panel" data-side="right" aria-labelledby="settings-title">
+    <div class="flyout-header">
+      <h2 id="settings-title">Settings</h2>
+      <button class="btn btn-ghost icon-btn" data-flyout-close aria-label="Close">✕</button>
+    </div>
+    <div class="flyout-body stagger">
+      <div class="field">
+        <span class="label">Accent color</span>
+        <div class="swatches">
+          <button class="swatch" data-color="#6ea8fe" style="background:#6ea8fe" aria-label="Blue"></button>
+          <button class="swatch" data-color="#a78bfa" style="background:#a78bfa" aria-label="Violet"></button>
+          <button class="swatch" data-color="#3ddc97" style="background:#3ddc97" aria-label="Green"></button>
+          <button class="swatch" data-color="#ff8a65" style="background:#ff8a65" aria-label="Orange"></button>
+          <button class="swatch" data-color="#f472b6" style="background:#f472b6" aria-label="Pink"></button>
+        </div>
+      </div>
+      <div class="field">
+        <label class="switch">Reduce motion <input type="checkbox" id="reduceMotion"></label>
+        <div class="hint">Turns animations off. Your system's reduced-motion setting is also respected.</div>
+      </div>
+    </div>
+    <div class="flyout-footer">
+      <button class="btn" id="resetSettings">Reset</button>
+      <button class="btn btn-primary" data-flyout-close>Done</button>
+    </div>
+  </aside>
+
+  <aside class="flyout" id="help-panel" data-side="right" aria-labelledby="help-title">
+    <div class="flyout-header">
+      <h2 id="help-title">Keyboard shortcuts</h2>
+      <button class="btn btn-ghost icon-btn" data-flyout-close aria-label="Close">✕</button>
+    </div>
+    <div class="flyout-body">
+      <dl class="kv stagger">
+        <dt><kbd>?</kbd></dt><dd>Show this panel</dd>
+        <dt><kbd>m</kbd></dt><dd>Toggle navigation</dd>
+        <dt><kbd>,</kbd></dt><dd>Open settings</dd>
+        <dt><kbd>Esc</kbd></dt><dd>Close top panel</dd>
+      </dl>
+    </div>
+  </aside>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/shortcuts.js"></script>
+</body>
+</html>
